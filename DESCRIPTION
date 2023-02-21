@@ -18,3 +18,5 @@ Imports:
     tidyr
 RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
+URL: https://github.com/chris31415926535/walkscore
+BugReports: https://github.com/chris31415926535/walkscore/issues
