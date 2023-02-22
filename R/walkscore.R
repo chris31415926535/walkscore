@@ -42,6 +42,10 @@
 #' @param verbose Boolean. Should we print lots of info to the console?
 #'
 #' @return The input `tibble` with new columns containing Walk Score API responses.
+#' @examples \dontrun{
+#' df <- data.frame(lat = 45.378791, lon = -75.662508)
+#' df <- walkscore::walkscore(df, apikey = "your api key")
+#' }
 #' @export
 walkscore <- function(df, apikey, polite_pause = 0.2, verbose = FALSE){
 

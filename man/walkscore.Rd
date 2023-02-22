@@ -46,3 +46,9 @@ registered trademark of its owner, \emph{again, with whom we are not affiliated}
 
 API documentation is available here: \url{https://www.walkscore.com/professional/api.php}
 }
+\examples{
+\dontrun{
+df <- data.frame(lat = 45.378791, lon = -75.662508)
+df <- walkscore::walkscore(df, apikey = "your api key")
+}
+}
