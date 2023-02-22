@@ -1,14 +1,15 @@
 Package: walkscore
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Score Walks with the 'Walk Score' API
 Version: 0.1.0
 Authors@R: person(given = "Christopher", 
     family = "Belanger", 
     email = "christopher.a.belanger@gmail.com",
     role = c("aut", "cre", "cph"), 
     comment = c(ORCID = "0000-0003-2070-5721"))
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: A tidy interface to the 'Walk Score' API, a proprietary API that
+    assigns locations a walkability score between 0 and 100. Also provides bike
+    scores and transit scores where available.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

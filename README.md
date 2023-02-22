@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Get Walk Scores from the Walk Score API
+# Score Walks with the Walk Score API
 
 <!-- badges: start -->
 
@@ -58,3 +58,28 @@ your_apikey <- "put a real API key here"
 test_data <- dplyr::tibble(lat = 45.420193, lon = -75.697796) |>
   walkscore::walkscore(apikey = your_apikey)
 ```
+
+## Related Projects
+
+See also the package `walkscoreAPI` [available on
+CRAN](https://cran.r-project.org/web/packages/walkscoreAPI/index.html).
+Compared to `walkscoreAPI`, the current package `walkscore` has
+advantages for some use cases:
+
+1.  `walkscore` uses data frames for inputs and outputs and adheres to
+    “tidy” design princniples; `walkscoreAPI` works on single values and
+    provides output as a list.
+2.  `walkscore` handles batching automatically for data frame inputs;
+    `walkscoreAPI` does not.
+3.  `walkscore` automatically handles API failures if you hit your rate
+    limit by returning the results so far, and will pick up where it
+    left off if you re-feed the output into it again once your rate
+    limit resets; `walkscoreAPI` has no such functionality.
+
+However, `walkscoreAPI` may be simpler if you only need to find a few
+values, or if you have a professional/enterprise API key with higher
+usage limits and you want to run a large volume of API calls in
+parallel.
+
+`walkscoreAPI` also has a number of helper functions, whereas
+`walkscore` is focused entirely on accessing the Walk Score API.
