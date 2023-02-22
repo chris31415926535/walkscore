@@ -77,6 +77,8 @@ walkscore <- function(df, apikey, polite_pause = 0.2, verbose = FALSE){
 
         api_response_content <- httr::content(api_response)
 
+        # set up a default API response object, in case we error on the first try
+        result <- api_response
 
         # if we got a good walkscore, format the results
         if (api_response_content$status == 1){
