@@ -1,6 +1,6 @@
 Package: walkscore
 Type: Package
-Title: Score Walks with the 'Walk Score' API
+Title: A Tidy Interface to the 'Walk Score' API
 Version: 0.1.0
 Authors@R: person(given = "Christopher", 
     family = "Belanger", 

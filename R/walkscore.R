@@ -69,7 +69,6 @@ walkscore <- function(df, apikey, polite_pause = 0.2, verbose = FALSE){
     api_result <- try({
 
       url <- sprintf("https://api.walkscore.com/score?format=json&lat=%s&lon=%s&transit=1&bike=1&wsapikey=%s&address=%s", df[i,]$lat, df[i,]$lon, apikey, "")
-      #url <- sprintf("https://api.walkscore.com/score?format=json&address=%s&transit=1&bike=1&wsapikey=%s", urltools::url_encode("1243 willowdale ave., ottawa on, k1h7s5"), apikey)
       api_response <- httr::GET(url)
 
       # get http status: did api call work at all?
@@ -131,7 +130,8 @@ walkscore <- function(df, apikey, polite_pause = 0.2, verbose = FALSE){
 
       # add all the new info to the row in question
       # using base R so that it will create columns if they're not there yet
-
+      # not worried about types here because it will coerce.
+      # we set applicable columns to numeric at the end, before returning final results
       for (colname in colnames(result)) df[i,colname] <- result[,colname]
 
     }
@@ -169,6 +169,13 @@ walkscore <- function(df, apikey, polite_pause = 0.2, verbose = FALSE){
     Sys.sleep(polite_pause)
 
   } # end for (i in 1:nrow(df))
+
+
+  # set any applicable columns to numeric
+  df$walkscore <- as.numeric(df$walkscore)
+  if ("bike.score" %in% colnames(df)) df$bike.score <- as.numeric(df$bike.score)
+  if ("snapped_lon" %in% colnames(df)) df$snapped_lon <- as.numeric(df$snapped_lon)
+  if ("snapped_lat" %in% colnames(df)) df$snapped_lat <- as.numeric(df$snapped_lat)
 
   return(df)
 }
