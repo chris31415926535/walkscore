@@ -49,9 +49,11 @@
 #' @export
 walkscore <- function(df, apikey, polite_pause = 0.2, verbose = FALSE){
 
+  if (apikey =="") stop ("API key is required.")
+
   # if we don't have any walkscores yet, add a column of NA values.
   # we'll use NA values to figure out which rows we need to process
-  if (!"walkscore" %in% colnames(df)) df$walkscore <- NA
+  if (!"walkscore" %in% colnames(df)) df$walkscore <- NA_real_
 
   # loop through each row
   for (i in 1:nrow(df)) {
@@ -130,11 +132,28 @@ walkscore <- function(df, apikey, polite_pause = 0.2, verbose = FALSE){
 
       # add all the new info to the row in question
       # using base R so that it will create columns if they're not there yet
-      # not worried about types here because it will coerce.
+      # basic type checking
       # we set applicable columns to numeric at the end, before returning final results
-      for (colname in colnames(result)) df[i,colname] <- result[,colname]
+      for (colname in colnames(result)) {
 
-    }
+        # try to get the class of this input data column so we can type match
+        # we get an error if the column name is not already in the dataframe--
+        # i.e. if it's new data
+        class_of_old <- try(class(df[i,colname][[1]]), silent = TRUE)
+
+        if ("try-error" %in% class(class_of_old)){
+          df[i,colname] <- result[,colname]
+        } else if ("numeric" %in% class_of_old ) {
+          df[i,colname] <- as.numeric(result[,colname])
+        } else if ("character" %in% class_of_old) {
+          df[i,colname] <- as.character(result[,colname]  )
+        } else if ("POSIXct" %in% class_of_old) {
+          df[i,colname] <- as.POSIXct( result[,colname][[1]])
+        } # end if for response type
+
+      } # end for (colname in colnames(result))
+
+    } # end if (!"error" in class(api_result))
 
     # if we did get an error, deal with that here
     if ("error" %in% class(api_result)){

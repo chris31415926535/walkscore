@@ -62,9 +62,9 @@ test_data <- dplyr::tibble(lat = 45.420193, lon = -75.697796) |>
 ## Related Projects
 
 See also the package `walkscoreAPI` [available on
-CRAN](https://cran.r-project.org/web/packages/walkscoreAPI/index.html).
-Compared to `walkscoreAPI`, the current package `walkscore` has
-advantages for some use cases:
+CRAN](https://cran.r-project.org/package=walkscoreAPI). Compared to
+`walkscoreAPI`, the current package `walkscore` has advantages for some
+use cases:
 
 1.  `walkscore` uses data frames for inputs and outputs and adheres to
     “tidy” design princniples; `walkscoreAPI` works on single values and
