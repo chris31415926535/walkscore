@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-#  Score Walks with the Walk Score API
+#  A Tidy Interface to the 'Walk Score' API
 
 <!-- badges: start -->
 

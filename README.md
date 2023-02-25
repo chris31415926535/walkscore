@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Score Walks with the Walk Score API
+# A Tidy Interface to the ‘Walk Score’ API
 
 <!-- badges: start -->
 
