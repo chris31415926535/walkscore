@@ -55,8 +55,11 @@ walkscore <- function(df, apikey, polite_pause = 0.2, verbose = FALSE){
   # we'll use NA values to figure out which rows we need to process
   if (!"walkscore" %in% colnames(df)) df$walkscore <- NA_real_
 
+  # get the indices of the items without walkscores
+  df_na_indices <- which(is.na(df$walkscore))
+
   # loop through each row
-  for (i in 1:nrow(df)) {
+  for (i in df_na_indices) {
 
     if (verbose) message("Row ", i)
 
