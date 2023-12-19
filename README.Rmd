@@ -71,6 +71,24 @@ test_data <- dplyr::tibble(lat = 45.420193, lon = -75.697796) |>
 ```
 
 
+## A Note about *NA* API Responses
+
+**If you receive many NA responses, try waiting a few minutes and repeating your
+query.** When you query the Walkscore API for specific lat/lon value, it *seems* 
+that it returns cached values if they exist, or otherwise calculates new values. 
+However, in at least some cases, the API seems to return an invalid/nonexistent 
+result to your query *while it is calculating your requested value on the server*.
+
+So if you are querying regions that are new to Walkscore you will receive NA
+results the first time, but if you query again later Walkscore may have calculated
+those results and added them to its cache.
+
+Unfortunately this is a server-side issue and this package can't fix it: we can
+only parse the responses the server gives us, and the `polite_pause` parameter 
+is for adding delays between API calls whatever their result may be.
+
+**Another reminder that I am not affiliated with Walkscore!** 
+
 ## Related Projects
 
 See also the package `walkscoreAPI` [available on CRAN](https://cran.r-project.org/package=walkscoreAPI). Compared to `walkscoreAPI`, the current package `walkscore` has advantages for some use cases:
